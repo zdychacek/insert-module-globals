@@ -90,16 +90,8 @@ module.exports = function (file, opts) {
             var scope = opts.always
                 ? { globals: { implicit: varNames } }
                 : parseScope('(function(){\n' + source + '\n})()', {
-					plugins: [
-						'objectRestSpread',
-						'decorators',
-						'classProperties',
-						'classProperties',
-						'functionBind'
-					]
-				});
-
-			//console.log(scope.globals)
+                    parserPlugins: opts.parserPlugins
+                });
         }
         catch (err) {
             var e = new SyntaxError(
