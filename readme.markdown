@@ -1,17 +1,17 @@
 # insert-module-globals
 
-insert implicit module globals
+*This is a fork of [`insert-module-globals`](https://www.npmjs.com/package/insert-module-globals) which uses [Babylon](https://github.com/babel/babylon) parser instead of [`acorn`](https://www.npmjs.com/package/acorn).*
+
+Inserts implicit module globals
 (`__filename`, `__dirname`, `process`, `global`, and `Buffer`)
 as a browserify-style transform
-
-[![build status](https://secure.travis-ci.org/substack/insert-module-globals.png)](http://travis-ci.org/substack/insert-module-globals)
 
 # example
 
 ``` js
 var mdeps = require('module-deps');
 var bpack = require('browser-pack');
-var insert = require('insert-module-globals');
+var insert = require('@zdychacek/insert-module-globals');
 function inserter (file) {
     return insert(file, { basedir: __dirname + '/files' });
 }
@@ -48,7 +48,7 @@ in foo/index.js: {"__filename":"/foo/index.js","__dirname":"/foo"}
 # methods
 
 ``` js
-var insertGlobals = require('insert-module-globals')
+var insertGlobals = require('@zdychacek/insert-module-globals')
 ```
 
 ## var inserter = insertGlobals(file, opts)
@@ -75,6 +75,8 @@ no other references to `Buffer`.
 If `opts.debug` is true, an inline source map will be generated to compensate
 for the extra lines.
 
+You cas pass list of plugins for Bybylon parser via `opts.parserPlugins` option.
+
 # events
 
 ## inserter.on('global', function (name) {})
@@ -92,13 +94,13 @@ usage: insert-module-globals {basedir}
 With [npm](https://npmjs.org), to get the library do:
 
 ```
-npm install insert-module-globals
+npm install @zdychacek/insert-module-globals
 ```
 
 and to get the bin script do:
 
 ```
-npm install -g insert-module-globals
+npm install -g @zdychacek/insert-module-globals
 ```
 
 # insert custom globals.
